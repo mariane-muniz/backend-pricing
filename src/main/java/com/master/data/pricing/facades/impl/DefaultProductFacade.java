@@ -1,5 +1,7 @@
 package com.master.data.pricing.facades.impl;
 
+import java.util.Set;
+
 import javax.annotation.Resource;
 
 import com.master.data.pricing.facades.ProductFacade;
@@ -15,8 +17,8 @@ public class DefaultProductFacade implements ProductFacade {
     private ProductService productService;
 
     @Override
-    public double findProductPrices(final String productCode) {
-        final ProductPrice price = this.productService.findOneByProductCode(productCode);
-        return price.getPrice();
+    public Set<ProductPrice> findProductPrices(final String productCode) {
+        final Set<ProductPrice> price = this.productService.findOneByProductCode(productCode);
+        return price;
     }
 }

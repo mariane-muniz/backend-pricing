@@ -1,5 +1,9 @@
 package com.master.data.pricing.facades;
 
+import java.util.Set;
+
+import com.master.data.pricing.models.ProductPrice;
+
 public interface ProductFacade {
-    double findProductPrices(final String productCode);
+    Set<ProductPrice> findProductPrices(final String productCode);
 }

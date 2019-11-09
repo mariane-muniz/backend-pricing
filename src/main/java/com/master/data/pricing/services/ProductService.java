@@ -1,7 +1,9 @@
 package com.master.data.pricing.services;
 
+import java.util.Set;
+
 import com.master.data.pricing.models.ProductPrice;
 
 public interface ProductService {
-    ProductPrice findOneByProductCode(final String productCode);
+    Set<ProductPrice> findOneByProductCode(final String productCode);
 }

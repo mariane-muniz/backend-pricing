@@ -1,5 +1,7 @@
 package com.master.data.pricing.services.impl;
 
+import java.util.Set;
+
 import javax.annotation.Resource;
 
 import com.master.data.pricing.models.ProductPrice;
@@ -15,7 +17,7 @@ public class DefaultProductService implements ProductService {
     private ProductPriceRepository productPriceRepository;
 
     @Override
-    public ProductPrice findOneByProductCode(final String productCode) {
-        return this.productPriceRepository.findOneByProductCode(productCode);
+    public Set<ProductPrice> findOneByProductCode(final String productCode) {
+        return this.productPriceRepository.findByProductCode(productCode);
     }
 }

@@ -1,8 +1,11 @@
 package com.master.data.pricing.controllers;
 
+import java.util.Set;
+
 import javax.annotation.Resource;
 
 import com.master.data.pricing.facades.ProductFacade;
+import com.master.data.pricing.models.ProductPrice;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -14,11 +17,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-@CrossOrigin(
-    origins = "*",
-    allowedHeaders = "*",
-    allowCredentials = "false"
-)
+@CrossOrigin(origins = "*", allowedHeaders = "*", allowCredentials = "false")
 @RestController
 @RequestMapping("/price")
 public class PricingController {
@@ -29,11 +28,11 @@ public class PricingController {
     private ProductFacade ProductFacade;
 
     @GetMapping("/{productCode}")
-    public ResponseEntity<Double> getProductPrices(@PathVariable("productCode") final String productCode){
+    public ResponseEntity<Set<ProductPrice>> getProductPrices(@PathVariable("productCode") final String productCode) {
 
         try {
-            final double price = this.ProductFacade.findProductPrices(productCode);
-            return ResponseEntity.status(HttpStatus.ACCEPTED).body(new Double(price));
+            Set<ProductPrice> price = this.ProductFacade.findProductPrices(productCode);
+            return ResponseEntity.status(HttpStatus.ACCEPTED).body(price);
         }
         catch (Exception e) {
             LOG.error(e.getMessage());
